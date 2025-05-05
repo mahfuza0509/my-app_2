@@ -1,26 +1,53 @@
 import React, { useState } from 'react';
 import Footer from './Footer.jsx';
 import Header from './Header.jsx';
+import Main from './Main.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
-  const [filter, setFilter] = useState("all");
+  const [filter, setFilter] = useState("main");
+
+
+  const isActive = (name) => filter === name ? 'active' : '';
 
   return (
-    <div className="container py-4">
+    <div className="container py-5">
       
-      <nav className="mb-4 d-flex justify-content-center gap-2">
-        <button className="btn btn-primary" onClick={() => setFilter("footer")}>Button1</button>
-        <button className="btn btn-success" onClick={() => setFilter("header")}>Button2</button>
-      </nav>
 
       
-      <div className="main__content text-center p-4 border rounded bg-light">
-        {
-          filter === "footer" ? <Footer /> :
-          filter === "header" ? <Header /> :
-          <p className="text-muted">Выберите компонент для отображения</p>
-        }
+      <div className="d-flex justify-content-center mb-4">
+        <div className="btn-group">
+          <button
+            className={`btn btn-outline-primary ${isActive("footer")}`}
+            onClick={() => setFilter("footer")}
+          >
+            Footer
+          </button>
+          <button
+            className={`btn btn-outline-success ${isActive("header")}`}
+            onClick={() => setFilter("header")}
+          >
+            Header
+          </button>
+          <button
+            className={`btn btn-outline-warning ${isActive("main")}`}
+            onClick={() => setFilter("main")}
+          >
+            Main
+          </button>
+        </div>
+      </div>
+
+      
+      <div className="card shadow">
+        <div className="card-body text-center">
+          {
+            filter === "footer" ? <Footer /> :
+            filter === "header" ? <Header /> :
+            filter === "main" ? <Main /> :
+            <p></p>
+          }
+        </div>
       </div>
     </div>
   );
