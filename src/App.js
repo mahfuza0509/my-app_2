@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Footer from './Footer.jsx';
 import Header from './Header.jsx';
 import Main from './Main.jsx';
+import Button from './Button.jsx'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
@@ -35,6 +36,12 @@ function App() {
           >
             Main
           </button>
+          <button
+            className={`btn btn-outline-warning ${isActive("button")}`}
+            onClick={() => setFilter("button")}
+          >
+            Main
+          </button>
         </div>
       </div>
 
@@ -45,6 +52,7 @@ function App() {
             filter === "footer" ? <Footer /> :
             filter === "header" ? <Header /> :
             filter === "main" ? <Main /> :
+            filter === "button" ? <Button /> :
             <p></p>
           }
         </div>
